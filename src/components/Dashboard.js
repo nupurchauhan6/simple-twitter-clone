@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useEffect } from 'react-redux';
 import Tweet from './Tweet';
 
 const Dashboard = () => {
@@ -13,9 +13,10 @@ const Dashboard = () => {
             <h3 className="center">Your Timeline</h3>
             <ul className="dashboard-list">
                 {tweetIds && tweetIds.map((id) => (
-                    <li key={id}>
-                        <div><Tweet id={id} /></div>
-                    </li>
+                    !tweets[id].replyingTo ?
+                        <li key={id}>
+                            <div><Tweet id={id} /></div>
+                        </li> : null
                 ))}
             </ul>
         </div>
